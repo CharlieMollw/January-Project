@@ -1,0 +1,22 @@
+Analysis Report
+----------------
+Number of Readings: 5
+
+Microbit 1 --- Temperature: 25.0 C, C02 Level: 0.2 ppm
+Microbit 1 --- Temperature: 28.0 C, C02 Level: 0.3 ppm
+Microbit 1 --- Temperature: 14.0 C, C02 Level: 0.27 ppm
+Microbit 1 --- Temperature: 17.0 C, C02 Level: 0.23 ppm
+Microbit 1 --- Temperature: 19.0 C, C02 Level: 0.24 ppm
+
+Statistical Analysis:
+----------------
+Average Temperature: 20.60
+Median Temperature: 19.00
+Average C02 Level: 0.25
+Median C02 Level: 0.24
+Range of Temperatures: 14.00
+Range of C02 Levels: 0.10
+Relative Range of Temperatures: 2.00
+Relative Range of C02 Levels: 1.50
+Correlation Coefficient: 0.1198
+The temperatures and C02 levels have very little correlation

@@ -1,6 +1,6 @@
 import sys
 import statistics as stat
-import matplotlib as plt
+import matplotlib.pyplot as plt
 
 
 readings = []
@@ -10,20 +10,20 @@ Carbs = []
 while(len(sys.argv) > 1):
     Temp = sys.argv[1]
     sys.argv.remove(Temp)
-    Carb = sys.argv[2]
+    Carb = sys.argv[1]
     sys.argv.remove(Carb)
     readings.append([float(Temp), float(Carb)])
     Temps.append(float(Temp))
-    Carbs.append(float(Carbs))
+    Carbs.append(float(Carb))
 
 avgTemp = stat.mean(Temps)
 medTemp = stat.median(Temps)
 avgCarb = stat.mean(Carbs)
 medCarb = stat.median(Carbs)
 
-sortTemps = Temps
+sortTemps = Temps.copy()
 sortTemps.sort()
-sortCarbs = Carbs
+sortCarbs = Carbs.copy()
 sortCarbs.sort()
 
 ranTemps = sortTemps[len(sortTemps)-1] - sortTemps[0]
@@ -48,3 +48,35 @@ elif cor < 1:
     correlation = "The temperatures and C02 levels have an strong positive correlation"
 else:
     correlation = "The temperatures and C02 levels have an exact positive correlation"
+
+plt.scatter(Temps, Carbs)
+plt.xlabel('Temperature (C)')
+plt.ylabel('C02 Levels (ppm)')
+plt.title('Temperature Compared to C02 Levels')
+count = 1
+for i in readings:
+    plt.annotate(f"Microbit {count}", (i[0], i[1]))
+    count += 1
+plt.savefig('temp_carb_correlation.png')
+
+with open('analysis_report.txt', 'w') as f:
+    f.write("Analysis Report\n")
+    f.write("----------------\n")
+    f.write(f"Number of Readings: {len(readings)}\n")
+    f.write("\n")
+    for i in readings:
+        f.write(f"Microbit 1 --- Temperature: {i[0]} C, C02 Level: {i[1]} ppm\n")
+    f.write("\n")
+    f.write("Statistical Analysis:\n")
+    f.write("----------------\n")
+    f.write(f"Average Temperature: {avgTemp:.2f}\n")
+    f.write(f"Median Temperature: {medTemp:.2f}\n")
+    f.write(f"Average C02 Level: {avgCarb:.2f}\n")
+    f.write(f"Median C02 Level: {medCarb:.2f}\n")
+    f.write(f"Range of Temperatures: {ranTemps:.2f}\n")
+    f.write(f"Range of C02 Levels: {ranCarbs:.2f}\n")
+    f.write(f"Relative Range of Temperatures: {relranTemps:.2f}\n")
+    f.write(f"Relative Range of C02 Levels: {relranCarbs:.2f}\n")
+    f.write(f"Correlation Coefficient: {cor:.4f}\n")
+    f.write(f"{correlation}\n")
+
