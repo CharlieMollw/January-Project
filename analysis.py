@@ -64,8 +64,10 @@ with open('analysis_report.txt', 'w') as f:
     f.write("----------------\n")
     f.write(f"Number of Readings: {len(readings)}\n")
     f.write("\n")
+    count = 1
     for i in readings:
-        f.write(f"Microbit 1 --- Temperature: {i[0]} C, C02 Level: {i[1]} ppm\n")
+        f.write(f"Microbit {count} --- Temperature: {i[0]} C, C02 Level: {i[1]} ppm\n")
+        count += 1
     f.write("\n")
     f.write("Statistical Analysis:\n")
     f.write("----------------\n")
